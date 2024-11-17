@@ -1,3 +1,4 @@
+import 'package:code/home.dart';
 import 'package:code/register.dart';
 import 'package:flutter/material.dart';
 
@@ -38,6 +39,11 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       print(
           "Logging in with email: ${_emailController.text} and password: ${_passwordController.text}");
+      // Navigate to HomeScreen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
     }
   }
 
