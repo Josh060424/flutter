@@ -9,7 +9,54 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: MainScreen(),
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    HomeScreen(),
+    AboutScreen(),
+    ProjectScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        selectedItemColor: Color(0xFF8BC34A),
+        unselectedItemColor: Colors.white,
+        backgroundColor: Color(0xFF4B4B5E),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'About',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.work),
+            label: 'Project',
+          ),
+        ],
+      ),
     );
   }
 }
@@ -18,12 +65,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Color(0xFF4B4B5E), // background color similar to the screenshot
+      backgroundColor: Color(0xFF4B4B5E),
       body: SafeArea(
         child: Column(
           children: [
-            // Top bar with "Home" title only
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Center(
@@ -37,8 +82,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Circular image and text
             Expanded(
               child: Center(
                 child: Column(
@@ -51,8 +94,7 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage(
-                              '/josep.jpg'), // replace with your image path
+                          image: AssetImage('josep.jpg'),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -63,7 +105,7 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       "Hello I’m Joseph",
                       style: TextStyle(
-                        color: Color(0xFF8BC34A), // green text color
+                        color: Color(0xFF8BC34A),
                         fontSize: 28.0,
                         fontWeight: FontWeight.bold,
                       ),
@@ -72,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       "Your beginner designer",
                       style: TextStyle(
-                        color: Color(0xFF8BC34A), // green text color
+                        color: Color(0xFF8BC34A),
                         fontSize: 18.0,
                       ),
                     ),
@@ -81,6 +123,44 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class AboutScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFF4B4B5E),
+      body: Center(
+        child: Text(
+          'About Screen',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ProjectScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFF4B4B5E),
+      body: Center(
+        child: Text(
+          'Project Screen',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
